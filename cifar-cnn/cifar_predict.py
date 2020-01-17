@@ -20,6 +20,7 @@ class_names = {0: 'aquatic mammals', 1: 'fish', 2: 'flowers', 3: 'food container
                13: 'non-insect invertebrates', 14: 'people', 15: 'reptiles', 16: 'small mammals',
                17: 'trees', 18: 'vehicles 1', 19: 'vehicles 2'}
 
+
 plt.figure(figsize=(10, 6))
 test = np.random.randint(0, 9999, size=(8,))
 print(test)
