@@ -1,4 +1,5 @@
 # cifar-cnn
+Convolutional neural network trained on Cifar 100 coarse mode (20 classes) dataset with Adam Optimization. Top two predictions with the true label on random image prediction. 
 
 ## Screenshots  
 ![image](https://user-images.githubusercontent.com/41022783/73222174-9a3ac580-4130-11ea-86fe-627e9ae1853d.png)
