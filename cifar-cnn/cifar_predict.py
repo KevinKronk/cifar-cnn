@@ -5,12 +5,8 @@ import matplotlib.pyplot as plt
 
 
 (x_train, y_train), (x_test, y_test) = tfk.datasets.cifar100.load_data(label_mode="coarse")
-# x_train = np.reshape(x_train, [60000, 28, 28, 1])
-# x_test = np.reshape(x_test, [10000, 28, 28, 1])
 model = tfk.models.load_model('cifar.h5')
 
-# class_names = {0: 'T-shirt/top', 1: 'Trouser', 2: 'Pullover', 3: 'Dress', 4: 'Coat',
-#                5: 'Sandal', 6: 'Shirt', 7: 'Sneaker', 8: 'Bag', 9: 'Ankle boot'}
 
 class_names = {0: 'aquatic mammals', 1: 'fish', 2: 'flowers', 3: 'food containers',
                4: 'fruit and vegetables', 5: 'household electrical devices',
@@ -22,26 +18,20 @@ class_names = {0: 'aquatic mammals', 1: 'fish', 2: 'flowers', 3: 'food container
 
 
 plt.figure(figsize=(10, 6))
+# Choose random images
 test = np.random.randint(0, 9999, size=(8,))
-print(test)
+
 sub = 1
 for i in test:
-    # image = x_test[i]
     image = np.expand_dims(x_test[i], axis=0)
     image = tf.dtypes.cast(image, tf.float16)
-    # image = np.reshape(image, [1, 28, 28, 1])
     prediction_vals = model.predict(image)
-    pred = np.argpartition(prediction_vals, -5)[:, -5:]
-    #prediction = np.argmax(prediction_vals)
+    pred = np.argpartition(prediction_vals, -2)[:, -2:]
     y_true = np.int(y_test[i])
     plt.subplot(2, 4, sub)
     plt.imshow(x_test[i], cmap='binary')
-    one = class_names[np.int(pred[:,4])]
-    two = class_names[np.int(pred[:,3])]
-    three = class_names[np.int(pred[:,2])]
-    four = class_names[np.int(pred[:,1])]
-    five = class_names[np.int(pred[:,0])]
-    # , {two}, {three}, {four}, {five}
+    one = class_names[np.int(pred[:, 1])]
+    two = class_names[np.int(pred[:, 0])]
     plt.xlabel(f"Top 1: {one}\nTop 2: {two}\
     \nTrue: {class_names[y_true]}")
     plt.xticks([])
